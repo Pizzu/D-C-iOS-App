@@ -8,30 +8,45 @@
 import SwiftUI
 
 struct CourseItem: View {
+
+    var course : Course
+    var height : CGFloat = 200
+    var borderRadius : CGFloat = 20
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 4.0) {
             
-            Image("Illustration 1")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            HStack {
+                Spacer()
+                Image(self.course.image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                Spacer()
+            }
             
-            Text("SwiftUI for iOS 14")
+            
+            Text(self.course.title)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
             
-            Text("20 Sections")
+            Text(self.course.subtitle)
                 .font(.footnote)
                 .foregroundColor(.white)
         }
         .padding()
-        .background(Color.blue)
-        .clipShape(RoundedRectangle(cornerRadius: 20.0, style: .continuous))
-        .shadow(color: Color.blue.opacity(0.3), radius: 10, x: 0, y: 10)
+        .frame(height: height)
+        .background(
+            self.course.color
+                .clipShape(RoundedRectangle(cornerRadius: borderRadius, style: .continuous))
+        )
+        .shadow(color: self.course.color.opacity(0.3), radius: 20, x: 0, y: 10)
+            
     }
+    
 }
 
 struct CourseItem_Previews: PreviewProvider {
     static var previews: some View {
-        CourseItem()
+        CourseItem(course: Course(title: "SwiftUI  for iOS 14", subtitle: "20 Sections", image: "Illustration 1", logo: "Logo 1", color: Color.blue))
     }
 }

@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct CourseList: View {
-    @ViewBuilder
     var body: some View {
         #if os(iOS)
         content
-            .listStyle(InsetGroupedListStyle())
         #else
         content
             .frame(minWidth: 800, minHeight: 600)
@@ -21,7 +19,7 @@ struct CourseList: View {
     
     var content : some View {
         List(0 ..< 15) { item in
-            CourseRow()
+            CourseRow(courseSection: courseSections[0])
         }
         .navigationTitle("Courses")
     }

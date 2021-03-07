@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct Sidebar: View {
-    @ViewBuilder
     var body: some View {
         NavigationView {
             #if os(iOS)
