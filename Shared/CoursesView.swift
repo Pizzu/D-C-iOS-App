@@ -22,7 +22,6 @@ struct CoursesView: View {
         ZStack {
             #if os(iOS)
             if horizontalSizeClass == .compact {
-                content
                 tabBar
             } else {
                 sideBar
@@ -47,17 +46,17 @@ struct CoursesView: View {
                     ForEach(courses) { course in
                         VStack {
                             CourseItem(course: course)
-                                .matchedGeometryEffect(id: course.id, in: namespace, isSource: !show)
+                                .matchedGeometryEffect(id: course.id, in: namespace)
                                 .onTapGesture {
-                                    withAnimation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0)) {
-                                        self.show.toggle()
+                                    withAnimation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 1)) {
+                                        self.show = true
                                         self.selectedCourse = course
-                                        isDisabled = true
+                                        self.isDisabled = true
                                     }
                                 }
                                 .disabled(isDisabled)
                         }
-                        .matchedGeometryEffect(id: "container\(course.id)", in: namespace, isSource: !show)
+                        .matchedGeometryEffect(id: "container\(course.id)", in: namespace)
                         .zIndex(1)
                     }
                 }
@@ -96,11 +95,11 @@ struct CoursesView: View {
                 CloseButton()
                     .padding(16)
                     .onTapGesture {
-                        withAnimation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0)) {
-                            show.toggle()
-                            selectedCourse = nil
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                isDisabled = false
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 0)) {
+                            self.show = false
+                            self.selectedCourse = nil
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                                self.isDisabled = false
                             }
                         }
                     }
@@ -110,7 +109,7 @@ struct CoursesView: View {
             .frame(maxWidth: .infinity)
         }
     }
-    
+    @ViewBuilder
     var tabBar : some View {
         TabView {
             NavigationView {
