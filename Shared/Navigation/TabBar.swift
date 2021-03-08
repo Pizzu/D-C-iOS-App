@@ -58,6 +58,3 @@ struct TabBar_Previews: PreviewProvider {
         TabBar()
     }
 }
-
-//                Label("Certificates", systemImage: "mail.stack")
-//                Label("Search", systemImage: "magnifyingglass")

@@ -24,7 +24,7 @@ struct CourseItemDetail: View {
     
     var content: some View {
 
-        VStack(spacing: 0) {
+        VStack{
             ScrollView {
                 CourseItem(course: course, height: 350, borderRadius: 0)
                     .matchedGeometryEffect(id: course.id, in: namespace)
@@ -32,6 +32,12 @@ struct CourseItemDetail: View {
                 VStack {
                     ForEach(courseSections) { courseSection in
                         CourseRow(courseSection: courseSection)
+                            .onTapGesture {
+                                self.showModal = true
+                            }
+                            .sheet(isPresented: self.$showModal, content: {
+                                CourseSectionDetail()
+                            })
                         Divider()
                     }
                 }

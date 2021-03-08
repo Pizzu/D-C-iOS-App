@@ -22,6 +22,7 @@ struct CourseRow: View {
                 Text(courseSection.title)
                     .font(.subheadline)
                     .bold()
+                    .foregroundColor(.primary)
                 
                 Text(courseSection.subtitle)
                     .font(.footnote)
@@ -36,5 +37,6 @@ struct CourseRow: View {
 struct CourseRow_Previews: PreviewProvider {
     static var previews: some View {
         CourseRow(courseSection: courseSections[0])
+            
     }
 }

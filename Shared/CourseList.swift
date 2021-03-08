@@ -21,6 +21,7 @@ struct CourseList: View {
         List(0 ..< 15) { item in
             CourseRow(courseSection: courseSections[0])
         }
+        .listStyle(InsetListStyle())
         .navigationTitle("Courses")
     }
     
